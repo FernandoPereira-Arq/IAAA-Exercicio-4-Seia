@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seia — Enquadramento Técnico e Legal</title>
+    <style>
+        :root {
+            --bg-primary: #fcfbf9;
+            --bg-surface: #ffffff;
+            --text-main: #2c2c2c;
+            --text-muted: #666666;
+            --accent: #8b5a2b;
+            --accent-hover: #6d441f;
+            --border: #e0deda;
+            --border-light: #f0eeeb;
+            --confirmed: #2d6a4f;
+            --confirmed-bg: #e8f5e9;
+            --conditional: #b7791f;
+            --conditional-bg: #fff8e1;
+            --missing: #c53030;
+            --missing-bg: #ffebee;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        header {
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .site-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: normal;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .site-title span {
+            background: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 2.5rem auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        section {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2.5rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.01);
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: normal;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        h2 span.subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .intro-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .intro-card h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .authors-list {
+            list-style: none;
+        }
+
+        .authors-list li {
+            padding: 0.25rem 0;
+            font-weight: 500;
+        }
+
+        .parcel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .parcel-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .parcel-data table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .parcel-data th, .parcel-data td {
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .parcel-data th {
+            color: var(--text-muted);
+            font-weight: 500;
+            width: 35%;
+        }
+
+        .media-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .media-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .media-preview {
+            width: 100%;
+            height: 220px;
+            background: #eae6e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-caption {
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            background: var(--bg-surface);
+        }
+
+        .media-caption strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            text-align: left;
+            white-space: normal;
+        }
+
+        table.data-table th, table.data-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        table.data-table th {
+            background-color: #f7f5f0;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        table.data-table td:last-child, table.data-table th:last-child {
+            border-right: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .badge-confirmed {
+            background-color: var(--confirmed-bg);
+            color: var(--confirmed);
+            border: 1px solid #a3e4d7;
+        }
+
+        .badge-conditional {
+            background-color: var(--conditional-bg);
+            color: var(--conditional);
+            border: 1px solid #f9e79f;
+        }
+
+        .badge-missing {
+            background-color: var(--missing-bg);
+            color: var(--missing);
+            border: 1px solid #f5b7b1;
+        }
+
+        .analysis-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .analysis-item {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--bg-primary);
+            padding: 1.5rem;
+        }
+
+        .analysis-item h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .process-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .process-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        ul.styled-list {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        ul.styled-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 6px;
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        .modal-body img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        @media print {
+            header { position: static; border-bottom: 2px solid black; }
+            nav { display: none; }
+            section { break-inside: avoid; border: none; border-bottom: 1px solid #ccc; padding: 1.5rem 0; box-shadow: none; }
+            .table-responsive { overflow: visible; }
+            table.data-table { font-size: 0.75rem; }
+            .modal { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <h1 class="site-title">
+                Seia — Enquadramento Técnico e Legal
+                <span>MIA 2025/2026</span>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="#apresentacao">Apresentação</a></li>
+                    <li><a href="#parcela">Parcela</a></li>
+                    <li><a href="#tabelas">Tabelas Legais</a></li>
+                    <li><a href="#sintese">Quadro Síntese</a></li>
+                    <li><a href="#pendencias">Pendências</a></li>
+                    <li><a href="#processo">Processo</a></li>
+                    <li><a href="#fontes">Fontes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. APRESENTACIÓN -->
+        <section id="apresentacao">
+            <h2>Exercício 3 — Seia / Enquadramento Técnico e Legal <span class="subtitle">Unidade Curricular: Inteligência Artificial Aplicada à Arquitectura</span></h2>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <h3>Autoria (Grupo 9)</h3>
+                    <ul class="authors-list">
+                        <li>Ana Nascimento Silva</li>
+                        <li>Fernando Cordeiro Pereira</li>
+                        <li>Francisca Rebelo</li>
+                    </ul>
+                </div>
+                <div class="intro-card">
+                    <h3>Objetivo Editorial</h3>
+                    <p>Compilação e retificação integral do enquadramento legal e regulamentar para a parcela de Seia, articulando o PDM de Seia, REU de Seia (Reg. n.º 306/2011), RJUE, RGEU, DL n.º 163/2006 e DL n.º 101-D/2020 com DL n.º 11/2025.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>Metodologia</h3>
+                    <p>Adopção das 6 tabelas normativas e técnicas atualizadas como fonte única de verdade, assegurando total rastreabilidade das citações, artigos e valores regulamentares.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PARCELA -->
+        <section id="parcela">
+            <h2>2. Caracterização da Parcela <span class="subtitle">Localização, dados cadastrais e registos visuais</span></h2>
+            <div class="parcel-grid">
+                <div class="parcel-data">
+                    <table>
+                        <tr>
+                            <th>Localização / Arruamentos</th>
+                            <td>Av. da Liberdade / Rua Salgueiros, Seia</td>
+                        </tr>
+                        <tr>
+                            <th>Coordenadas Geográficas</th>
+                            <td>40.419338, -7.717701</td>
+                        </tr>
+                        <tr>
+                            <th>Área da Parcela</th>
+                            <td>3 714,00 m²</td>
+                        </tr>
+                        <tr>
+                            <th>Cadastro Georreferenciado</th>
+                            <td>AAA 000 817 604 (Declaração n.º 30478)</td>
+                        </tr>
+                        <tr>
+                            <th>Classificação PDM</th>
+                            <td>Solo Urbano (Solo Urbanizado) — Espaços Residenciais</td>
+                        </tr>
+                        <tr>
+                            <th>Uso Pretendido</th>
+                            <td>Moradia unifamiliar de 2 pisos</td>
+                        </tr>
+                        <tr>
+                            <th>Data da Consulta Legal</th>
+                            <td>29 de outubro de 2026</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="media-container">
+                    <div class="media-card">
+                        <div class="media-preview" onclick="openModal('imagens/cadastro.png', 'Planta Cadastral DGT — Parcela AAA 000 817 604')">
+                            <img src="imagens/cadastro.png" alt="Planta Cadastral da Parcela">
+                        </div>
+                        <div class="media-caption">
+                            <strong>Planta Cadastral Georreferenciada</strong>
+                            Fonte: DGT / dgTerritório (Cadastro AAA 000 817 604 - 3714 m²).
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-preview" onclick="openModal('imagens/ortofoto.png', 'Vista Aérea e Ortofotomapa — Av. da Liberdade')">
+                            <img src="imagens/ortofoto.png" alt="Vista Aérea da Parcela">
+                        </div>
+                        <div class="media-caption">
+                            <strong>Vista Aérea e Enquadramento Urbano</strong>
+                            Fonte: Google Maps / Google Earth (Av. da Liberdade / Rua Salgueiros).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TABELAS LEGAIS ATUALIZADAS -->
+        <section id="tabelas">
+            <h2>3. Tabelas Técnicas e Regulamentares <span class="subtitle">Fonte de Verdade Atualizada de Seia</span></h2>
+            <div class="analysis-grid">
+
+                <!-- TABELA 1 -->
+                <div class="analysis-item">
+                    <h3>Tabela 1: Parâmetros Urbanísticos e Regime do Solo (PDM de Seia + REU de Seia)</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Exigência (diploma + artigo/secção)</th>
+                                    <th>Valor ou critério (SI)</th>
+                                    <th>Citação literal (máx. 30 palavras)</th>
+                                    <th>Efeito na parcela / condição para o projeto</th>
+                                    <th>Data de consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Categoria de solo e usos compatíveis</strong></td>
+                                    <td>PDM de Seia (Aviso n.º 13424/2021), Art. 86.º, n.º 1 e Art. 87.º, n.º 1, 2</td>
+                                    <td>Solo Urbano (Solo Urbanizado) — Espaços Residenciais. Uso dominante: habitação unifamiliar. Usos compatíveis: comércio, serviços e turismo.</td>
+                                    <td>«assumem correspondência com os solos que apresentam como destino dominante a fixação de funções de cariz residencial, nelas podendo ser admitidos outras tipologias de usos, desde que compatíveis»</td>
+                                    <td>Moradia unifamiliar diretamente permitida como uso dominante no terreno.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Índice de utilização e área de construção máxima</strong></td>
+                                    <td>PDM de Seia (Aviso n.º 13424/2021), Art. 80.º, n.º 1 (Quadro)</td>
+                                    <td>I_u ≤ 0,8 ⟹ Área de construção máxima (A_c) = 0,8 × 3714 m² = <strong>2971,2 m²</strong>.</td>
+                                    <td>«Espaços residenciais ... Habitação unifamiliar ... Índice máximo de utilização do solo: ≤ 0,8»</td>
+                                    <td>A área bruta de construção acumulada para a habitação não pode ultrapassar 2971,2 m².</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Cércea / altura máxima e número de pisos</strong></td>
+                                    <td>PDM de Seia, Art. 80.º, n.º 1 e REU de Seia (Reg. n.º 306/2011), Art. 60.º, n.º 2</td>
+                                    <td>Edifício principal: N.º máximo de pisos acima da soleira = 2. Anexos/construções auxiliares: 1 piso, cércea ≤ <strong>2,50 m</strong> (cobertura plana) ou beirado ≤ <strong>2,50 m</strong> e cumeeira ≤ <strong>3,50 m</strong> (cobertura inclinada).</td>
+                                    <td>«Número máximo de pisos acima da cota de soleira: 2 ... Ter uma cércea não superior a 2,50 m, no caso de possuir cobertura plana ... beirado não superior a 2,50 m»</td>
+                                    <td>Moradia limitada a 2 pisos. Anexos de apoio/garagem não podem ter cércea superior a 2,50 m (plana) ou 3,50 m no ponto mais alto.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Afastamentos mínimos e alinhamentos</strong></td>
+                                    <td>PDM de Seia, Art. 80.º, n.º 3, 5, 6 e REU de Seia (Reg. n.º 306/2011), Art. 58.º, n.º 1, Art. 63.º, n.º 4</td>
+                                    <td>Frontal: alinhamento dominante. Lateral: ≥ H/2 (mínimo de <strong>3 m</strong>). Posterior: mínimo de <strong>5 m</strong>. Varandas/balanços: pé-direito ≥ <strong>3,00 m</strong>, balanço ≤ 50% do passeio. Muros: altura ≤ <strong>1,80 m</strong>.</td>
+                                    <td>«afastamentos laterais ... igual a metade da altura, mas nunca inferior 3 metros ... garantir uma altura livre ao passeio de, pelo menos, 3,00 m»</td>
+                                    <td>Respeitar 3 m às divisórias laterais, 5 m ao tardoz, muros de vedação até 1,80 m e varandas com pé-direito livre ≥ 3,00 m ao passeio.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Implantação, impermeabilização e área permeável</strong></td>
+                                    <td>PDM de Seia, Art. 80.º, n.º 1 e REU de Seia (Reg. n.º 306/2011), Art. 57.º, n.º 1</td>
+                                    <td>Implantação máxima (I_o ≤ 0,4) = <strong>1485,6 m²</strong>. Impermeabilização máxima (I_imp ≤ 0,6) = <strong>2228,4 m²</strong>. Área permeável mínima do prédio ≥ 25,0% (25% × 3714 m² = <strong>928,5 m²</strong>). Anexos ≤ 50 m².</td>
+                                    <td>«Índice máximo de ocupação do solo: ≤ 0,4 ... A área permeável deve ser, no mínimo, equivalente a 25,0 % da área total do prédio.»</td>
+                                    <td>Reservar no logradouro uma área permeável contínua e não pavimentada de pelo menos 928,5 m². Pegada do edifício principal até 1485,6 m².</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Estacionamento mínimo exigido</strong></td>
+                                    <td>PDM de Seia (Aviso n.º 13424/2021), Art. 103.º, n.º 1 (Quadro)</td>
+                                    <td>Habitação unifamiliar privativa: A_c &lt; 120 m² ⟹ 1 lugar; 120 m² ≤ A_c ≤ 300 m² ⟹ 2 lugares; A_c &gt; 300 m² ⟹ 3 lugares.</td>
+                                    <td>«1 lugar/fogo com área de construção 120 &lt; m2; 2 lugares/fogo com área de construção entre 120 m2 e 300 m2; 3 lugares/fogo com área de construção &gt; 300 m2.»</td>
+                                    <td>Prever no interior da parcela 1, 2 ou 3 lugares privados de garagem/estacionamento conforme a área bruta construída.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Condicionantes sobrepostas e acústica</strong></td>
+                                    <td>PDM de Seia, Art. 6.º, 7.º, 14.º e REU de Seia (Reg. n.º 306/2011), Art. 21.º</td>
+                                    <td>Classificação Acústica: Zona Mista. Receptores isolados fora do perímetro equiparados a zonas mistas. Confirmação de isenção de REN/RAN/Áreas Ardidas por extrato cadastral.</td>
+                                    <td>«receptores sensíveis isolados não integrados em zonas classificadas por estarem fora dos perímetros urbanos, são equiparados a zonas sensíveis ou mistas»</td>
+                                    <td>O projeto acústico da moradia deve cumprir os requisitos de Zona Mista. A isenção de afetação a REN/RAN deve ser validada por certidão de condicionantes.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>8. Servidões, Taxas e Encargos Municipais</strong></td>
+                                    <td>PDM de Seia, Art. 29.º e REU de Seia (Reg. n.º 306/2011), Art. 86.º, 87.º, 91.º</td>
+                                    <td>Servidão rodoviária e aeronáutica (se aplicável). Sujeição à Taxa de Infraestruturas (TMU) com K1 = 0,40 e Compensação se houver dispensa de cedências.</td>
+                                    <td>«A taxa pela realização, manutenção e reforço de infra-estruturas urbanísticas é fixada ... K1 — perímetro urbano de Seia — 0,4»</td>
+                                    <td>Prever no orçamento da obra o pagamento da TMU municipal (K1 = 0,40) e eventual compensação por dispensa de cedências públicas.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TABELA 2 -->
+                <div class="analysis-item">
+                    <h3>Tabela 2: Licenciamento Urbanístico e Instrução do Processo (RJUE + Portaria n.º 320/2026/1 + REU de Seia)</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Exigência (diploma + artigo/secção)</th>
+                                    <th>Conteúdo/valor</th>
+                                    <th>Citação literal (máx. 30 palavras)</th>
+                                    <th>Obrigação para o futuro projeto</th>
+                                    <th>Data de consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Tipo de operação urbanística</strong></td>
+                                    <td>RJUE (DL n.º 555/99), Art. 2.º, al. b) e REU de Seia (Reg. n.º 306/2011), Art. 39.º</td>
+                                    <td>Obras de construção (criação de nova edificação habitacional unifamiliar em parcela existente). (Exigência legal)</td>
+                                    <td>««Obras de construção», as obras de criação de novas edificações;»</td>
+                                    <td>Enquadrar o pedido como obra de construção nova para efeitos de instrução e aplicação de taxas municipais.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Procedimento aplicável e justificação</strong></td>
+                                    <td>RJUE (DL n.º 555/99), Art. 4.º, n.º 2, al. c) e REU de Seia, Art. 35.º, 39.º</td>
+                                    <td>Licenciamento municipal (área sem plano de pormenor ou loteamento prévio). (Exigência legal)</td>
+                                    <td>«Estão sujeitas a licença: ... c) As obras de construção, de alteração ou de ampliação em área não abrangida por: i) Plano de pormenor; ou ii) Operação de loteamento»</td>
+                                    <td>Submeter pedido de licença à Câmara Municipal de Seia. (Caso existisse PIP favorável prévio, aplicar-se-ia comunicação prévia).</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Elementos instrutórios e peças exigidas</strong></td>
+                                    <td>Portaria n.º 320/2026/1, Anexo V e REU de Seia (Reg. n.º 306/2011), Art. 22.º</td>
+                                    <td>Requerimento único (Anexos I e I-C), arquitetura, memória descritiva com critérios do REU (alinhamentos, volumetria, vedações), especialidades, acessibilidades, estimativa de custos e folha de cálculo de índices em ODS/XLSX.</td>
+                                    <td>«A folha de cálculo de índices e parâmetros urbanísticos contidos no quadro sinóptico, quando seja exigível, são ainda entregues em formato ODS, XLS ou XLSX.»</td>
+                                    <td>Elaborar a memória descritiva justificando a inserção urbana conforme o Art. 22.º do REU de Seia e submeter o quadro sinóptico/folha de cálculo em ODS/XLSX.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Formatos e formalidades de entrega</strong></td>
+                                    <td>RJUE, Art. 8.º-A e Portaria n.º 320/2026/1, Anexo VI, n.º 1</td>
+                                    <td>Submissão desmaterializada na plataforma eletrónica. Peças em PDF/A com assinatura digital, planta de implantação em DWG georreferenciada e sinóptico em ODS/XLSX.</td>
+                                    <td>«As peças escritas e desenhadas são entregues em formato PDF/A ... A planta de implantação deverá ser ainda apresentada em formato dwg ... georreferenciada»</td>
+                                    <td>Assinar digitalmente as peças técnicas com Cartão de Cidadão/Chave Móvel/SCAP e exportar a planta de implantação georreferenciada em DWG.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Termos de responsabilidade e seguro</strong></td>
+                                    <td>RJUE, Art. 10.º e Portaria n.º 320/2026/1, Anexos V e VII</td>
+                                    <td>Termos de responsabilidade normalizados dos autores/coordenadores (Anexo VII) e comprovativo de seguro de responsabilidade civil extracontratual dos técnicos.</td>
+                                    <td>«instruído com declaração dos autores dos projetos ... e do coordenador dos projetos ... Comprovativo da contratação de seguro de responsabilidade civil dos técnicos»</td>
+                                    <td>Instruir o processo com os termos oficiais do Anexo VII da Portaria n.º 320/2026/1 e apólices de seguro válidas com capital adequado.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Consultas externas / pareceres</strong></td>
+                                    <td>RJUE, Art. 13.º-A e REU de Seia (Reg. n.º 306/2011), Art. 94.º</td>
+                                    <td>Consultas efetuadas de forma concentrada via CCDR no prazo de 20 dias (ex.: ANAC para servidão aeronáutica do aeródromo). PIP prévio opcional.</td>
+                                    <td>«A consulta de entidades ... em razão da localização, é efetuada através de uma única entidade coordenadora, a CCDR territorialmente competente»</td>
+                                    <td>Assinalar no requerimento as servidões incidentes para consulta concentrada via CCDR ou instruir com pareceres prévios válidos.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Prazos e Taxas Municipais aplicáveis</strong></td>
+                                    <td>RJUE, Art. 13.º, Art. 117.º e REU de Seia, Art. 39.º, 86.º, 87.º</td>
+                                    <td>Pronúncia externa em 20 dias. Pagamento da taxa de emissão de licença (Quadro IV) e da Taxa de Infraestruturas (TMU) com K1 = 0,40. Fiscalização caduca em 10 anos.</td>
+                                    <td>«A emissão do alvará de licença ... para obras de construção ... está sujeita ao pagamento da taxa fixada no quadro IV ... variando esta consoante o uso, área e prazo»</td>
+                                    <td>Proceder ao pagamento da taxa de licença de edificação e da TMU municipal antes do início das obras de construção.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TABELA 3 -->
+                <div class="analysis-item">
+                    <h3>Tabela 3: Requisitos de Edificação, Salubridade e Habitabilidade (RGEU + REU de Seia)</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Artigo</th>
+                                    <th>Valor ou critério (SI)</th>
+                                    <th>Citação literal (máx. 30 palavras)</th>
+                                    <th>Condição a respeitar no projeto</th>
+                                    <th>Data de consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Pé-direito livre e altura entre pisos</strong></td>
+                                    <td>RGEU (DL n.º 38382/51), Art. 65.º e REU de Seia (Reg. n.º 306/2011), Art. 60.º, n.º 2</td>
+                                    <td>Altura mínima piso a piso = 2,70 m; pé-direito livre mínimo = 2,40 m (excecionalmente 2,20 m em I.S./corredores). Anexos/construções auxiliares: cércea máxima = 2,50 m (plana) ou beirado a 2,50 m e ponto mais alto a 3,50 m (inclinada).</td>
+                                    <td>«A altura mínima, piso a piso, em edificações destinadas à habitação é de 2,70m, não podendo ser o pé-direito livre mínimo inferior a 2,40 m.»</td>
+                                    <td>Garantir nas salas e quartos pé-direito livre ≥ 2,40 m. Projetar os anexos de apoio/garagem sem exceder 2,50 m de cércea (plana) ou 3,50 m de cumeeira.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Áreas e dimensões mínimas dos compartimentos</strong></td>
+                                    <td>RGEU (DL n.º 38382/51), Art. 66.º, 67.º, 69.º</td>
+                                    <td>Área bruta mínima: T1=52 m²; T2=72 m²; T3=91 m²; T4=105 m². Área útil: Quarto casal ≥ 10,5 m²; Quarto duplo ≥ 9 m²; Quarto simples ≥ 6,5 m²; Sala ≥ 12 m² (T2/T3); Cozinha ≥ 6 m². Dimensão mínima de largura: 1,70 m (cozinha) e inscrição de círculos Ø 2,40 m a Ø 2,70 m em compartimentos habitáveis.</td>
+                                    <td>«Os compartimentos de habitação não poderão ser em número e área inferiores aos indicados no quadro ... As áreas brutas dos fogos terão os seguintes valores mínimos: T1=52 m2, T2=72 m2, T3=91 m2»</td>
+                                    <td>Dimensionar os compartimentos da moradia cumprindo as áreas úteis/brutas mínimas e garantindo a inscrição dos diâmetros de manobra regulamentares.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Vãos de iluminação natural</strong></td>
+                                    <td>RGEU (DL n.º 38382/51), Art. 71.º</td>
+                                    <td>Área total dos vãos envidraçados para o exterior ≥ 1/10 (10%) da área do compartimento, com área mínima de 1,08 m² medidos no tosco por vão.</td>
+                                    <td>«serão sempre iluminados e ventilados por um ou mais vãos praticados nas paredes, em comunicação directa com o exterior e cuja área total não será inferior a um décimo da área»</td>
+                                    <td>Dotar todos os compartimentos habitáveis com janelas diretas para o exterior cuja superfície envidraçada útil seja ≥ 10% da área do piso.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Ventilação dos espaços</strong></td>
+                                    <td>RGEU, Art. 72.º, 87.º, 109.º e REU de Seia, Art. 60.º, n.º 2</td>
+                                    <td>Ventilação transversal da habitação em duas fachadas opostas. I.S.: vão direto ≥ 0,54 m² ou renovação de ar. Cozinha: exaustão de fumos/gases. Construções auxiliares no logradouro sem prejuízo da iluminação/ventilação dos espaços contíguos.</td>
+                                    <td>«Deverá ficar assegurada a ventilação transversal do conjunto de cada habitação, em regra por meio de janelas dispostas em duas fachadas opostas.»</td>
+                                    <td>Assegurar a ventilação transversal da moradia, exaustão mecânica na cozinha e ventilação direta ou por conduta nas instalações sanitárias.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Logradouros, afastamentos, vedações e salubridade</strong></td>
+                                    <td>RGEU, Art. 60.º, 62.º, 73.º e REU de Seia (Reg. n.º 306/2011), Art. 57.º, 58.º, 60.º</td>
+                                    <td>Afastamento lateral ≥ 3 m (ou H/2); posterior ≥ 5 m. Área permeável mínima do prédio ≥ 25,0% (<strong>928,5 m²</strong>). Área impermeável do logradouro ≤ Área de implantação principal. Vedações: altura ≤ <strong>1,80 m</strong> e componente opaca ≤ 60% junto à via pública.</td>
+                                    <td>«A área permeável deve ser, no mínimo, equivalente a 25,0 % da área total do prédio ... A altura máxima das vedações não deve ultrapassar os 1,80 m»</td>
+                                    <td>Garantir 3 m às divisórias laterais, 5 m ao tardoz, reservar 928,5 m² de solo permeável no logradouro e erguer muros até 1,80 m.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TABELA 4 -->
+                <div class="analysis-item">
+                    <h3>Tabela 4: Normas Técnicas de Acessibilidade (Decreto-Lei n.º 163/2006 e Anexo)</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Referência (artigo/secção do diploma ou do anexo)</th>
+                                    <th>Valor ou critério (SI)</th>
+                                    <th>Citação literal (máx. 30 palavras)</th>
+                                    <th>Condição a respeitar no projeto</th>
+                                    <th>Data de consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Percurso acessível (via pública, entrada e espaços)</strong></td>
+                                    <td>DL n.º 163/2006, Anexo, Secção 2.1.1 e Secção 3.3.7</td>
+                                    <td>Ligação sem degraus entre a via pública e a entrada principal. Para habitações em mais de 1 nível, deve existir percurso acessível no piso de entrada entre a porta e pelo menos 1 quarto, 1 cozinha e 1 I.S.</td>
+                                    <td>«proporcione o acesso seguro e confortável das pessoas com mobilidade condicionada entre a via pública, o local de entrada/saída principal e todos os espaços interiores e exteriores»</td>
+                                    <td>Garantir no piso térreo a acessibilidade integral entre o acesso da via pública, a entrada da moradia, a cozinha, uma instalação sanitária e um quarto.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Portas de entrada/saída — largura útil</strong></td>
+                                    <td>DL n.º 163/2006, Anexo, Secção 2.2.3, Secção 4.9.1 e Secção 3.3.8</td>
+                                    <td>Porta de entrada/saída do edifício: largura útil ≥ 0,87 m. Portas interiores da habitação e acesso a compartimentos: largura útil ≥ 0,77 m (medida com a folha aberta a 90°).</td>
+                                    <td>«As portas de entrada/saída dos edifícios e estabelecimentos devem ter um largura útil não inferior a 0,87 m ... Os vãos de porta devem possuir uma largura útil não inferior a 0,77 m»</td>
+                                    <td>Dimensionar a porta de entrada principal com no mínimo 0,87 m livres e as portas dos compartimentos interiores com no mínimo 0,77 m de passagem útil.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Circulações e zonas de manobra</strong></td>
+                                    <td>DL n.º 163/2006, Anexo, Secção 3.3.1, Secção 3.3.2 e Secção 4.4.1</td>
+                                    <td>Corredores e circulações da habitação: largura ≥ 1,10 m (admitindo-se troços ≥ 0,90 m se extensão ≤ 1,50 m). Vestíbulo de entrada: zona de manobra para rotação de 360° (Ø ≥ 1,50 m).</td>
+                                    <td>«Nos espaços de entrada das habitações deve ser possível inscrever uma zona de manobra para rotação de 360° ... Os corredores ... devem ter uma largura não inferior a 1,1 m»</td>
+                                    <td>Assegurar no vestíbulo de entrada o diâmetro livre de 1,50 m e projetar os corredores com largura mínima contínua de 1,10 m.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Corrimãos</strong></td>
+                                    <td>DL n.º 163/2006, Anexo, Secção 4.11.1, Secção 2.4.9 e Secção 2.5.9</td>
+                                    <td>Superfície de preensão com diâmetro/largura entre 0,035 m e 0,05 m. Altura em escadas: 0,85 m a 0,90 m. Em rampas com inclinação &gt; 6%: corrimão duplo a 0,70–0,75 m e 0,90–0,95 m.</td>
+                                    <td>«Os corrimãos e as barras de apoio devem ter um diâmetro ou largura das superfícies de preensão compreendido entre 0,035 m e 0,05 m»</td>
+                                    <td>Dotar eventuais escadas ou rampas de acesso de corrimãos anatómicos com diâmetro entre 3,5 cm e 5 cm, fixos às alturas regulamentares.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Acesso vertical (elevador, rampa ou plataforma)</strong></td>
+                                    <td>DL n.º 163/2006, Anexo, Secção 3.3.5 e Secção 3.3.7</td>
+                                    <td>Escadas interiores de acesso a compartimentos habitáveis: largura de lanços e patamares ≥ 1,00 m; profundidade de patamares ≥ 1,20 m. Meios mecânicos dispensados se o piso térreo assegurar a funcionalidade acessível.</td>
+                                    <td>«Se existirem escadas nas habitações que dêem acesso a compartimentos habitáveis ... A largura dos lanços, patamares e patins não deve ser inferior a 1 m»</td>
+                                    <td>Caso não seja instalado elevador interior, dimensionar a escada entre pisos com lanços de no mínimo 1,00 m e patamares de 1,20 m, concentrando o programa acessível no piso térreo.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Instalações sanitárias adaptadas</strong></td>
+                                    <td>DL n.º 163/2006, Anexo, Secção 3.3.4 e Secção 2.9.19</td>
+                                    <td>Pelo menos 1 I.S. com lavatório, sanita, bidé e banheira (ou base de duche 0,80 m × 0,80 m). Paredes preparadas para barras de apoio e zona de manobra livre para rotação de 360° (Ø ≥ 1,50 m).</td>
+                                    <td>«Em cada habitação deve existir pelo menos uma instalação sanitária ... equipada com, pelo menos, um lavatório, uma sanita, um bidé e uma banheira»</td>
+                                    <td>Assegurar na I.S. do piso acessível espaço livre para inscrição do círculo de 1,50 m (sem colisão com a porta) e parede estruturalmente apta para fixação de barras.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Lugares de estacionamento reservados</strong></td>
+                                    <td>DL n.º 163/2006, Anexo, Secção 2.8.2 e Secção 3.2.6, n.º 2</td>
+                                    <td>Dimensões do lugar adaptado: largura útil ≥ 2,50 m, faixa de acesso lateral ≥ 1,00 m e comprimento ≥ 5,00 m. Isenção de reserva supletiva para garagens com lotação &lt; 13 lugares.</td>
+                                    <td>«Os lugares de estacionamento reservados devem: 1) Ter uma largura útil não inferior a 2,5 m; 2) Possuir uma faixa de acesso lateral ... não inferior a 1 m»</td>
+                                    <td>Para o estacionamento privado da moradia, prever espaço de garagem/lote com largura de 2,50 m acrescida de 1,00 m lateral e comprimento de 5,00 m.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>8. Exceções aplicáveis e condições de invocação</strong></td>
+                                    <td>Decreto-Lei n.º 163/2006, Artigo 10.º, n.º 1 e Anexo, Secção 3.3.7</td>
+                                    <td>Invocável em intervenções onde a execução seja desproporcionadamente difícil ou de custos excessivos. Em moradias unifamiliares de múltiplos níveis, a acessibilidade plena pode concentrar-se no piso principal.</td>
+                                    <td>«o cumprimento das normas técnicas de acessibilidade ... não é exigível quando as obras necessárias à sua execução sejam desproporcionadamente difíceis, requeiram a aplicação de meios económico-financeiros desproporcionados»</td>
+                                    <td>Fundamentar na Memória Descritiva do Plano de Acessibilidades a opção de concentrar o percurso acessível no piso térreo ao abrigo da Secção 3.3.7 do Anexo.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TABELA 5 -->
+                <div class="analysis-item">
+                    <h3>Tabela 5: Desempenho Energético dos Edifícios (SCE — DL n.º 101-D/2020, DL n.º 11/2025 e Manual SCE)</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Exigência (diploma + artigo/secção)</th>
+                                    <th>Valor ou critério (SI)</th>
+                                    <th>Citação literal (máx. 30 palavras)</th>
+                                    <th>Condição a respeitar no projeto</th>
+                                    <th>Data de consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Âmbito da operação e requisitos aplicáveis</strong></td>
+                                    <td>DL n.º 101-D/2020, Artigo 2.º, al. a), Artigo 3.º, al. i) e Artigo 6.º, n.º 1; Manual SCE, Secção 3.2.1</td>
+                                    <td>Edifício novo de habitação (moradia unifamiliar). Sujeito aos requisitos de conforto térmico, indicadores de energia primária, nZEB, envolvente opaca/envidraçada, ventilação, climatização, AQS e infraestrutura para carregamento de veículos eléticos. (Exigência legal)</td>
+                                    <td>««Edifício novo», o edifício cujo primeiro processo de licenciamento ou autorização de edificação tenha data de entrada do projeto de arquitetura junto das entidades competentes»</td>
+                                    <td>Aplicar a metodologia de cálculo do desempenho energético para edifícios novos e cumprir integralmente os requisitos mínimos regulamentares (nZEB).</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Requisitos de desempenho energético</strong></td>
+                                    <td>DL n.º 101-D/2020, Artigo 4.º, n.º 1 e Artigo 6.º, n.º 9, al. b); Manual SCE, Cap. 16/17</td>
+                                    <td>Necessidades de energia primária N_tc ≤ N_t ⟹ R_Nt = N_tc / N_t ≤ <strong>1,00</strong> (classe energética mínima B-). Indicador de cobertura por energia renovável Ren_Hab ≥ <strong>0,50</strong>. (Exigência legal)</td>
+                                    <td>«A avaliação do desempenho energético dos edifícios é uma análise efetuada com base no consumo de energia calculated ... expressa por um indicador numérico de utilização energia primária»</td>
+                                    <td>Garantir que as necessidades primárias projetadas cumpram R_Nt ≤ 1,00, assegurando classe energética B- ou superior (B, A, A+).</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Condições de envolvente (transmitâncias e vãos)</strong></td>
+                                    <td>DL n.º 101-D/2020, Artigo 6.º, n.º 10; Manual SCE e REU de Seia, Art. 63.º, n.º 2</td>
+                                    <td>Transmitâncias de referência U_ref W/(m²·ºC) para a Zona Climática I3 (Seia): Paredes U_ref = <strong>0,35</strong>; Coberturas U_ref = <strong>0,30</strong>; Janelas U_ref = <strong>2,20 W/(m²·ºC)</strong>. Conceção dos elementos salientes orientada para o bom desempenho energético.</td>
+                                    <td>«Os edifícios de habitação estão sujeitos ao cumprimento dos requisitos ... aplicáveis aos seguintes componentes: a) Envolvente opaca; b) Envolvente envidraçada»</td>
+                                    <td>Dimensionar o isolamento térmico e a caixilharia/vidros para cumprir U ≤ U_ref na Zona Climática I3 e integrar palas/sombreamentos eficientes nos vãos.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Ventilação e qualidade do ar interior</strong></td>
+                                    <td>DL n.º 101-D/2020, Artigo 6.º, n.º 10 e Artigo 16.º, n.º 1; Manual SCE, Secção 9.2</td>
+                                    <td>Taxa de renovação de ar horária mínima R_ph ≥ <strong>0,5 renovações/hora</strong> (<strong>0,5 h⁻¹</strong>) para edifícios de habitação novos. (Exigência legal)</td>
+                                    <td>«os edifícios de habitação novos ... devem apresentar uma taxa de renovação de ar horária (Rph) igual ou superior a 0,5 renovações por hora.»</td>
+                                    <td>Prever no projeto aberturas de admissão e condutas de extração que garantam a renovação contínua de ar novo com R_ph ≥ 0,5 h⁻¹.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Sistemas técnicos (climatização, ventilação e AQS)</strong></td>
+                                    <td>DL n.º 101-D/2020, Artigo 6.º, n.º 10 e Artigo 10.º, n.º 1; Manual SCE, Cap. 10</td>
+                                    <td>Eficiência nominal mínima dos geradores de AQS e climatização (COP, EER, SCOP). Isolamento térmico obrigatório das redes de distribuição de fluídos (R ≥ 0,25 (m²·ºC)/W). (Exigência legal)</td>
+                                    <td>«Os sistemas técnicos dos edifícios devem ser projetados, instalados e operados de forma a possibilitarem as necessárias manutenções e a garantirem a necessária proteção da saúde»</td>
+                                    <td>Instalar geradores de elevada eficiência sazonal e assegurar o isolamento térmico contínuo da tubagem de distribuição de AQS e climatização.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Produção de energia renovável e restrições a fósseis</strong></td>
+                                    <td>DL n.º 101-D/2020, Art. 6.º, n.º 9; DL n.º 11/2025, Art. 2.º; Diretiva (UE) 2024/1275</td>
+                                    <td>Renováveis: Ren_Hab ≥ 0,50 (cobertura renovável de AQS/climatização via solar térmico, fotovoltaico ou bomba de calor). Fósseis: Proibição de incentivos a caldeiras fósseis desde 01/01/2025 (DL 11/2025). Diretiva EPBD: eliminação gradual até 2040.</td>
+                                    <td>«A partir de 1 de janeiro de 2025 deixam de ser concedidos incentivos financeiros à instalação de caldeiras autónomas a combustíveis fósseis»</td>
+                                    <td>Priorizar a instalação de sistemas renováveis (bomba de calor, solar térmico ou painéis fotovoltaicos) para AQS e climatização, excluindo geradores a combustíveis fósseis.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Certificação energética e classe aplicável</strong></td>
+                                    <td>DL n.º 101-D/2020, Artigo 18.º, n.º 1, Artigo 19.º e Artigo 28.º; Manual SCE</td>
+                                    <td>Obrigatoriedade de Pré-Certificado Energético (PCE) no licenciamento e de Certificado Energético (CE) na conclusão da obra. Para habitação nova, a classe mínima é B- (R_Nt ≤ 1,00). (Exigência legal)</td>
+                                    <td>«Estão sujeitos ao cumprimento da obrigação de certificação energética: a) A construção de edifícios novos ... A obtenção dos pré-certificados energéticos e os certificados energéticos»</td>
+                                    <td>Submeter com o projeto de especialidades o PCE emitido por Perito Qualificado (PQ) que ateste classe energética ≥ B-, obtendo o CE final para a licença de utilização.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TABELA 6 -->
+                <div class="analysis-item">
+                    <h3>Tabela 6: Regulamento Municipal de Urbanização, Edificação, Compensação e Taxas de Seia (Regulamento n.º 306/2011 — Especificidades e Encargos Municipais)</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Exigência (diploma + artigo/secção)</th>
+                                    <th>Conteúdo / valor (SI)</th>
+                                    <th>Citação literal (máx. 30 palavras)</th>
+                                    <th>Obrigação para o futuro projeto</th>
+                                    <th>Data de consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Área Permeável Mínima e Logradouro</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 57.º, n.º 1, pontos 1, 2</td>
+                                    <td>Área permeável mínima do prédio ≥ 25,0% (<strong>928,5 m²</strong>). A área impermeável do logradouro (acessos + anexos) não pode exceder a área de implantação da habitação principal (A_imp_logradouro ≤ A_i).</td>
+                                    <td>«A área impermeável dos logradouros ... deve ser, no máximo, equivalente à área de implantação da construção principal ... A área permeável deve ser, no mínimo, equivalente a 25,0 %»</td>
+                                    <td>Garantir no projeto de arranjos exteriores a manutenção de no mínimo 928,5 m² de terreno permeável/ajardinado livre de pavimentação.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Vedações e Muros Confinantes</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 58.º, n.º 1, 3, 6</td>
+                                    <td>Altura máxima dos muros/vedações = 1,80 m. Junto à via pública, a componente opaca (alvenaria/betão) não pode exceder 60,0% do polígono da vedação.</td>
+                                    <td>«A altura máxima das vedações não deve ultrapassar os 1,80 m ... a componente opaca da vedação não deve ser superior a 60,0 %»</td>
+                                    <td>Projetar os muros de vedação confinantes com a Av. da Liberdade e Rua Salgueiros com altura máxima de 1,80 m, combinando murete opaco (até 60%) com gradeamento.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Construções Auxiliares e Anexos</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 60.º, n.º 2, pontos 1 a 6</td>
+                                    <td>N.º máximo de pisos = 1. Cércea máxima = 2,50 m (se cobertura plana). Se cobertura inclinada: altura do beirado ≤ <strong>2,50 m</strong> e ponto mais alto da cobertura ≤ <strong>3,50 m</strong>. Não ter encosto a vias públicas.</td>
+                                    <td>«Não ter mais de um piso ... Ter uma cércea não superior a 2,50 m, no caso de possuir cobertura plana ... a altura do beirado não superior a 2,50 m»</td>
+                                    <td>Dimensionar a garagem exterior/anexo de apoio com piso único e cércea máxima de 2,50 m (plana) ou beirado a 2,50 m e cumeeira a 3,50 m.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Corpos Balançados e Salientes</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 63.º, n.º 4, 5</td>
+                                    <td>Pé-direito livre ao passeio ≥ <strong>3,00 m</strong>. Balanço máximo das varandas/corpos salientes ≤ <strong>50%</strong> da largura do passeio existente (ou ≤ <strong>10%</strong> da largura do arruamento se sem passeio).</td>
+                                    <td>«a introdução de corpos e elementos salientes dos planos de fachada deve garantir uma altura livre ao passeio de, pelo menos, 3,00 m, não podendo o seu balanço ultrapassar»</td>
+                                    <td>Respeitar a altura mínima de 3,00 m ao solo nas varandas sobre o espaço público e limitar o balanço a metade da largura do passeio.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Taxa de Infraestruturas Urbanísticas (TMU)</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 86.º, 87.º</td>
+                                    <td>Sujeição ao pagamento da TMU na construção nova, calculada pela fórmula TMU = (K1 × K3 × K4 × S2 × V) + (PPI × S2 / A_c), em que K1 = <strong>0,40</strong> (Perímetro Urbano de Seia).</td>
+                                    <td>«A taxa pela realização, manutenção e reforço de infra-estruturas urbanísticas é fixada ... K1 — perímetro urbano de Seia — 0,4»</td>
+                                    <td>Calcular a TMU na instrução do processo, aplicando o coeficiente K1 = 0,40 correspondente à localização no perímetro urbano da cidade de Seia.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Cálculo da Compensação por Cedências</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 90.º, 91.º</td>
+                                    <td>Em caso de dispensa parcial/total de cedência para espaços verdes e equipamentos, é devida compensação em numerário calculada por C = K1 × K2 × S1 × V, com K1 = <strong>0,40</strong>.</td>
+                                    <td>«O valor, em numerário, da compensação a pagar ao município será determinado de acordo com a seguinte fórmula: C = K1 x K2 x S1 x V ... K1 — perímetro urbano de Seia — 0,4»</td>
+                                    <td>Instruir a memória descritiva com o cálculo do valor de compensação municipal se a parcela não integrar cedências para o domínio público.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Obras de Escassa Relevância Urbanística em Seia</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 4.º, n.º 2</td>
+                                    <td>Isenção de controlo prévio para: muros que não confiram com via pública até 1,80 m; muretes em jardins até 1,00 m; pequenas obras de pavimentação/ajardinamento no logradouro.</td>
+                                    <td>«Integram ainda este conceito ... Muretes em jardins e logradouros desde que não ultrapassem 1 m ... Construção de simples muros e divisória que não confinem com via pública e não ultrapassem a altura de 1,80 m»</td>
+                                    <td>Executar muretes interiores de jardim até 1,00 m ou arranjos paisagísticos sem necessidade de pedido autonomizado de licença.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>8. Ocupação do Domínio Público por Obras</strong></td>
+                                    <td>REU de Seia (Reg. n.º 306/2011), Artigo 95.º, n.º 1, 3</td>
+                                    <td>Sujeita ao pagamento de taxa municipal (Quadro XVIII da Tabela I). Se isenta de licença, instruir com declaração de responsabilidade do técnico, planta 1:200 e perfil transversal do arruamento.</td>
+                                    <td>«A ocupação de espaços públicos por motivos de obras está sujeita ao pagamento das taxas ... instruído com ... Declaração de responsabilidade ... Planta cotada ... Perfil transversal»</td>
+                                    <td>Requerer a licença de ocupação da via pública para colocação de tapumes/andaimes na Av. da Liberdade e Rua Salgueiros com os elementos instrutórios do Art. 95.º.</td>
+                                    <td>29/10/2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. QUADRO SÍNTESE FINAL -->
+        <section id="sintese">
+            <h2>4. Quadro-Síntese Consolidado <span class="subtitle">Estado das Exigências do Projeto</span></h2>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Frente Regulamentar</th>
+                            <th>Requisitos Confirmados</th>
+                            <th>Requisitos Condicionais</th>
+                            <th>Pendências / Sem Fonte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>PDM + REU de Seia</strong></td>
+                            <td>Solo Urbano Espaços Residenciais; A_c máx. 2971,20 m²; Implantação máx. 1485,60 m²; Área permeável min. 25% (928,50 m²); Máximo 2 pisos; Anexos com cércea máx. 2,50 m (plana) ou beirado 2,50 m / cumeeira 3,50 m (inclinada); Afastamento lateral ≥ 3 m e posterior ≥ 5 m; Muros até 1,80 m (60% opacos); TMU com K1 = 0,40.</td>
+                            <td>N.º de lugares de estacionamento (1, 2 ou 3) a confirmar consoante a A_c final do projeto.</td>
+                            <td><span class="badge badge-missing">Por confirmar</span> Certidão de condicionantes para validação de isenção de REN/RAN.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RJUE (DL 555/99 + Portaria 320/2026/1)</strong></td>
+                            <td>Operação de construção nova sujeita a Licenciamento Municipal; Instrução eletrónica em PDF/A, DWG georreferenciado e sinóptico em ODS/XLSX; Termos do Anexo VII e seguros válidos.</td>
+                            <td>Caso exista PIP prévio favorável, o procedimento passa a comunicação prévia.</td>
+                            <td><span class="badge badge-confirmed">Confirmado</span> Sem pendências procedimentais.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RGEU (DL 38382/51)</strong></td>
+                            <td>Pé-direito livre mínimo 2,40 m; Altura piso a piso 2,70 m; Vãos de iluminação natural ≥ 10% da área do compartimento; Ventilação transversal obrigatória.</td>
+                            <td>Dimensões mínimas e áreas de compartimentos dependentes da tipologia escolhida (T1 a T4+).</td>
+                            <td><span class="badge badge-confirmed">Confirmado</span> Sem pendências regulamentares.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acessibilidades (DL 163/2006)</strong></td>
+                            <td>Percurso acessível piso térreo (entrada, cozinha, quarto, I.S.); Porta principal ≥ 0,87 m e interiores ≥ 0,77 m; Corredores ≥ 1,10 m; Diâmetro de rotação 1,50 m no vestíbulo e I.S.</td>
+                            <td>Invocação de exceções (Art. 10.º, n.º 1) a fundamentar no Plano de Acessibilidades se aplicável.</td>
+                            <td><span class="badge badge-confirmed">Confirmado</span> Sem pendências regulamentares.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SCE (DL 101-D/2020 + DL 11/2025)</strong></td>
+                            <td>Edifício novo de habitação nZEB; Classe energética mínima B- (R_Nt ≤ 1,00); Cobertura renovável Ren_Hab ≥ 0,50; Transmitâncias térmicas para Zona I3 (Paredes ≤ 0,35; Coberturas ≤ 0,30; Vãos ≤ 2,20); Renovação de ar R_ph ≥ 0,5 h⁻¹; Proibição de caldeiras a combustíveis fósseis; PCE obrigatório.</td>
+                            <td>Seleção tecnológica exata do gerador renovável (bomba de calor, solar térmico ou fotovoltaico).</td>
+                            <td><span class="badge badge-confirmed">Confirmado</span> Sem pendências regulamentares.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 5. PENDÊNCIAS -->
+        <section id="pendencias">
+            <h2>5. Registo de Pendências e Validações <span class="subtitle">Ações prévias ao submissão do projeto</span></h2>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Entidade / Âmbito</th>
+                            <th>Descrição da Pendência</th>
+                            <th>Ação Requerida</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Câmara Municipal de Seia</strong></td>
+                            <td>Emissão de certidão/extrato de condicionantes para a parcela cadastral AAA 000 817 604.</td>
+                            <td>Requerer certidão de plantas de condicionantes (REN, RAN, Riscos) junto do balcão de urbanismo.</td>
+                            <td><span class="badge badge-missing">Por confirmar</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>CCDR / ANAC</strong></td>
+                            <td>Verificação de incidência de servidão aeronáutica por proximidade a infraestrutura de aviação.</td>
+                            <td>Inscrição do pedido de parecer na plataforma de licenciamento para consulta concentrada via CCDR.</td>
+                            <td><span class="badge badge-conditional">Condicional</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 6. PROCESSO E VERIFICAÇÃO -->
+        <section id="processo">
+            <h2>6. Metodologia e Identificação de Fontes <span class="subtitle">Versões Atualizadas e Consultadas</span></h2>
+            <div class="process-grid">
+                <div class="process-card">
+                    <h3>Fontes Normativas Utilizadas</h3>
+                    <ul class="styled-list">
+                        <li><strong>PDM de Seia (1.ª Revisão)</strong>: Republicado pelo Aviso n.º 13424/2021 (D.R. 2.ª série, n.º 136, 15/07/2021).</li>
+                        <li><strong>REU de Seia</strong>: Regulamento n.º 306/2011 (D.R. 2.ª série, n.º 95, 17/05/2011).</li>
+                        <li><strong>RJUE</strong>: Decreto-Lei n.º 555/99 (com alterações introduzidas pelo DL n.º 10/2024 e DL n.º 108/2026).</li>
+                        <li><strong>Portaria n.º 320/2026/1</strong>: Elementos instrutórios de urbanismo (31/07/2026).</li>
+                        <li><strong>RGEU</strong>: Decreto-Lei n.º 38382/51, na redação em vigor.</li>
+                        <li><strong>Acessibilidades</strong>: Decreto-Lei n.º 163/2006 e Anexo.</li>
+                        <li><strong>SCE</strong>: Decreto-Lei n.º 101-D/2020 alterado pelo Decreto-Lei n.º 11/2025.</li>
+                    </ul>
+                </div>
+                <div class="process-card">
+                    <h3>Critérios de Qualidade Aplicados</h3>
+                    <ul class="styled-list">
+                        <li>Substituição integral das tabelas e parâmetros antigos pelos dados contidos na análise legal de Seia.</li>
+                        <li>Isolamento e eliminação completa de referências regulamentares de outros municípios.</li>
+                        <li>Conservação integral das citações literais, artigos, unidades e estados de confirmação.</li>
+                        <li>Apresentação limpa de fórmulas em HTML sem tags de código cruas ou sintaxe LaTeX.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. FONTES -->
+        <section id="fontes">
+            <h2>7. Repositório de Documentos de Suporte <span class="subtitle">Ficheiros de Referência</span></h2>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Descrição</th>
+                            <th>Caminho Relativo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tabelas Legais Atualizadas</strong></td>
+                            <td>Ficheiro Markdown autoritativo contendo as 6 tabelas retificadas de Seia.</td>
+                            <td><code>Tabelas_Legais_Atualizadas_Seia.md</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extrato Cadastral</strong></td>
+                            <td>Imagem cadastral da parcela DGT.</td>
+                            <td><code>imagens/cadastro.png</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ortofotomapa</strong></td>
+                            <td>Fotografia aérea da envolvência urbana.</td>
+                            <td><code>imagens/ortofoto.png</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para visualização de imagens -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody" class="modal-body"></div>
+            <p id="modalCaption" style="font-size: 0.9rem; color: var(--text-muted);"></p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(imgSrc, captionText) {
+            const modal = document.getElementById('imageModal');
+            const body = document.getElementById('modalBody');
+            const caption = document.getElementById('modalCaption');
+            
+            body.innerHTML = `<img src="${imgSrc}" alt="${captionText}">`;
+            caption.innerText = captionText;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
